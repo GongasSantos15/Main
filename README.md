@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @GongasSantos15
 - 👀 I’m interested in Technology and Programming
-- 🌱 I’m currently in ISEL in Lisbon, in Electronic, Telecommunications and Computer Engineering.
+- 🌱 I’m currently in IPCB in Castelo Branco, in Informatic Engineering.
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me ...
 
