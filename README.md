@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @GongasSantos15
-- 👀 I’m interested in Technology and Programming
+- 👀 I’m interested in Informatic in General
 - 🌱 I’m currently in IPCB in Castelo Branco, in Informatic Engineering.
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me ...
