@@ -1,0 +1,27 @@
+window:
+  class:
+    instance: Alacritty
+    general: Alacritty
+  opacity: 0.8
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  normal:
+    family: MesloLGS NF 
+    style: Medium
+  bold:
+    family: MesloLGS NF
+    style: Bold
+  italic:
+    family: MesloLGS NF
+    style: MediumItalic
+  bold_italic:
+    family: MesloLGS NF 
+    style: BoldItalic
+  size: 12
+draw_bold_text_with_bright_colors: true
+
+
