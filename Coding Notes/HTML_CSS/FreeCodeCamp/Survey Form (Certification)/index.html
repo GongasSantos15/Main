@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Survey Form</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <!-- Page Title and description -->
+        <header>
+            <h1 id="title" class="header">My Survey Form</h1>
+            <p id="description" class="header">My first survey form...</p>
+        </header>
+        <!-- Form -->
+        <form id="survey-form">
+            <div class="personal-info">
+                <h2>Personal Information</h2>
+                <hr>
+                <!-- Name -->
+                <div class="group">
+                    <label id="name-label" for="name" class="form-label">Name</label>
+                    <input type="text" name="name" id="name" placeholder="Enter your name..." required class="form-input">
+                </div>
+                <!-- Email -->
+                <div class="group">
+                    <label id="email-label" for="email" class="form-label">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter your email..." required class="form-input">
+                </div>
+                <!-- Age -->
+                <div class="group">
+                    <label id="number-label" for="age" class="form-label">Age (optional)</label>
+                    <input type="number" name="age" id="number" placeholder="Enter your age..." min="0" max="120" class="form-input">
+                </div>
+                <!-- Location -->
+                <div class="group">
+                    <label id="location-label" for="location" class="form-label">Location (optional)</label>
+                    <input type="text" name="location" id="location" placeholder="Enter your location..." class="form-input">
+                </div>
+                <!-- Gender -->
+                <div class="group">
+                    <p class="p-personal-info">Gender (optional)</p>
+                    <label id="male" for="male" class="radio"> 
+                        <input name="gender" type="radio" id="male" value="male" checked> Male
+                    </label> 
+                    <label id="female" for="female" class="radio">
+                        <input type="radio" name="gender" id="female" value="female"> Female
+                    </label> 
+                    <label id="other" for="other" class="radio">
+                        <input type="radio" name="gender" id="other" value="other"> Other
+                    </label> 
+                </div>
+                <!-- Role -->
+                <div class="group">
+                    <p class="p-personal-info">Which option best describes your current role?</p>
+                    <select id="dropdown" name="role" class="role" required>
+                        <option disabled selected value="">Select current role</option>
+                        <option value="1">Unemployed</option>
+                        <option value="2">Student</option>
+                        <option value="3">Part-Time Job</option>
+                        <option value="4">Full-Time Job</option>
+                        <option value="5">Reformed</option>
+                    </select>
+                </div>
+                <!-- Hobbies -->
+                <div class="group">
+                    <p class="p-personal-info">Select at least one hobbie</p>
+                    <label id="coding" for="coding" class="hobbies">
+                        <input type="checkbox" value="coding"> Coding (of course)
+                    </label> 
+                    <label id="music" for="music" class="hobbies">
+                        <input type="checkbox" value="music"> Listen to music
+                    </label>
+                    <label id="books" for="books" class="hobbies">
+                        <input type="checkbox" value="books"> Read books
+                    </label>
+                    <label id="games" for="games" class="hobbies">
+                        <input type="checkbox" value="games"> Play videogames
+                    </label>   
+                </div>
+                <!-- About -->
+                <div class="group">
+                    <label id="about" for="about" class="form-label">About (optional)</label>
+                    <textarea name="about" id="about" placeholder="Any comments?"></textarea>
+                </div>
+                <input type="submit" value="Submit" id="submit" class="form-submit">
+            </div>
+        </form>
+    </body>
+</html>

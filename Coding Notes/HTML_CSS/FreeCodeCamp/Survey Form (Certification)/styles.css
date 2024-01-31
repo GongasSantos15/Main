@@ -1,0 +1,139 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    font-family: sans-serif;
+    font-size: 17px;
+    background-image: url(https://static.vecteezy.com/system/resources/previews/004/941/777/non_2x/cosmetic-background-for-product-branding-and-packaging-presentation-geometry-form-square-molding-on-podium-stage-with-shadow-of-leaf-background-illustration-design-vector.jpg);
+    background-size: 2100px;
+    color: rgb(210, 210, 210);
+    /* overflow: hidden; Hides the scroll bar */
+}
+
+form {
+    text-align: left;
+}
+
+hr {
+    border-color: dimgray;
+    height: 2px;
+    background-color: dimgray;
+    border: none;
+    width: 104%
+}
+
+h2 {
+    text-align: center;
+    margin: 0;
+}
+
+.personal-info {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    min-width: 1vh;
+    max-width: 1800px;
+}
+
+.header {
+    text-align: center;
+}
+
+.form-input {
+    display: block;
+    color: white;
+    font-size: 1rem;
+    padding: 0 1em;
+    background-color: black;
+    width: 100%;
+    height: 35px;
+    opacity: 70%;
+    border: 1px solid dimgray;
+    border-radius: 0.5rem;
+}
+
+.form-input:focus {
+    border-color: white;
+    outline: 0;
+    box-shadow: 0;
+}
+
+.group {
+    width: 100%;
+    height: 100%;
+    padding: 0.75em 0;
+    color: rgb(210, 210, 210);
+}
+
+input {
+    margin-top: 7px;
+}
+
+textarea {
+    display: block;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5em 1em;
+    background-color: black;
+    width: 100%;
+    height: 70px;
+    opacity: 70%;
+    border: 1px solid dimgray;
+    border-radius: 0.5rem;
+    margin-top: 7px;
+}
+
+.radio {
+    display: block;
+    padding: 3px;
+    min-height: 1.25rem;
+    min-width: 1.25rem;
+    color: rgb(210, 210, 210);
+}
+
+.p-personal-info {
+    font-size: 18px;
+    font-weight: bold;
+    margin: auto;
+    padding-bottom: 7px;
+}
+
+.role {
+    color: white;
+    font-size: 1rem;
+    padding: 0 1em;
+    background-color: black;
+    width: 104%;
+    height: 35px;
+    opacity: 70%;
+    border: 1px solid dimgray;
+    border-radius: 0.5rem;
+}
+
+option:focus {
+    background-color: black;
+}
+
+.hobbies {
+    display: block;
+    padding: 0 1em;
+}
+
+.form-label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.form-submit {
+    display: block;
+    color: white;
+    font-size: 1rem;
+    padding: 0 1em;
+    background-color: rgb(1, 29, 1);
+    width: 104%;
+    height: 35px;
+    opacity: 70%;
+    border: 1px solid dimgray;
+    border-radius: 0.5rem;
+}
