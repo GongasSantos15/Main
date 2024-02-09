@@ -236,9 +236,14 @@ li a:hover {
     height: 50px;
     width: 100px;
     background-color: rgb(16, 99, 183);
-    color: white;
     border-radius: 20px;
     border: none;
+}
+
+#information button a {
+    background-color: rgb(16, 99, 183);
+    color: white;
+    text-decoration: none;
 }
 
 #footer {
