@@ -1,0 +1,93 @@
+/* Page properties */
+html, body {
+    min-width: 320px;
+    background-color: #1e1e1e;
+    color: #b4b4b4;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    scrollbar-color: #292929;
+}
+
+/* All the headers (titles) on the page */
+header {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+    color: white;
+}
+
+/* Increase the top and bottom margin on the main-section class */
+.main-section {
+    margin: 30px 0;
+}
+
+p {
+    margin: 15px 0;
+}
+
+code {
+    background-color: #292929;
+    display: block;
+    text-align: left;
+    line-height: 3;
+    word-wrap: normal;
+    word-break: normal;
+    border-radius: 3px;
+}
+
+#main-doc {
+    position: absolute;
+    margin-left: 310px;
+    padding: 20px;
+    margin-bottom: 110px;
+}
+
+#navbar {
+    position: fixed;
+    min-width: 320px;
+    top: 0px;
+    left: 0px;
+    width: 250px;
+    height: 100%;
+    border-right: 1px solid #9c9c9c;
+}
+
+#navbar header {
+    text-align: center;
+    margin-top: 20px;
+    height: 40px;
+}
+
+/* All the navbar links */
+#navbar a {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    color: #a1a1a1;
+    padding: 10px 25px;
+}
+
+#navbar a:hover {
+    color: white;
+}
+
+#navbar ul {
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* All the navbar element of the list */
+#navbar li {
+    list-style: none;
+    border-top: 1px solid #9c9c9c;
+    font-size: 16px;
+}
+
+@media only screen and (max-width: 800px) {
+    /* Smartphones: */
+    #navbar ul {
+      border: 1px solid;
+      height: 200px;
+    }
+}
