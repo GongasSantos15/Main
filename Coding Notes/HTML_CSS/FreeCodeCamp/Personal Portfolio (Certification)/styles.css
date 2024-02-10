@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+* {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 70px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgb(21, 104, 21);
+    color: white;
+    font-size: 22px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: flex-end;
+}
+
+nav ul {
+    margin-right: 40%;
+    width: 20vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 70px;
+    padding: 0 2rem;
+    color: white;
+}
+
+nav a:hover {
+    background-color: white;
+    color: black;
+    border-radius: 3px;
+}
+
+.welcome-section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, rgb(46, 50, 52) 0%, rgb(18, 20, 20) 100%);
+    color: white;
+}
+
+.welcome-title {
+    font-size: 60px;
+}
+
+.subtitle {
+    font-family: 'Poppins';
+    font-size: 2rem;
+    font-style: italic;
+    color: #c3dd8c;
+}
+
+.intro-phrase {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    width: 40px;
+    margin: 0 10px;
+}
+
+#projects {
+    background: linear-gradient(180deg, rgb(18, 20, 20) 0%, rgb(46, 50, 52) 100%);
+    color: white;
+}
+
+.projects-main-title {
+    max-width: 400px;
+    margin: 0 auto 4rem auto;
+    border-bottom: 1px solid gray;
+    font-size: 40px;
+}
+
+/* "Automagic" image grid using no media queries */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 4rem;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 4rem 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+  
+.project-tile {
+    border-radius: 2px;
+}
+
+
+.code {
+    transition: color 0.3s ease-out;
+    padding: 0 10px;
+}
+
+.project-tile:hover .code {
+    color: #f3602a;
+}
+
+.project-image {
+    height: calc(100% - 6.8rem);
+    width: 100%;
+}
+
+.project-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 2rem 0.5rem;
+    background-color: rgb(12, 59, 12);
+}
+
+.contacts {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(2, 28, 0);
+    color: white;
+    min-height: 100px;
+}
+
+.contact-item:hover {
+    transform: translateY(8px);
+    transition: transform 0.2s ease-out;
+}
+
+.contacts ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.contacts a {
+    color: white;
+    text-decoration: none;
+    font-size: 36px;
+}
+
+.contacts li {
+    list-style-type: none;
+    margin: 0 20px;
+}
+
+.footer-title {
+    font-size: 25px;
+}
+
+@media (max-width: 900px){
+    header {
+        justify-content: center;
+    }
+
+    hr {
+        width: 50%;
+    }  
+}
