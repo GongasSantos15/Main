@@ -1,0 +1,272 @@
+/* Base color for the theme, dependent on whether it's a light theme or not */
+@media (prefers-color-scheme: dark) {
+  :root {
+      --accent-color: #373737;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+      --accent-color: #FAFAFC;
+  }
+}
+/*====== Aesthetics ======*/
+
+#navigator-toolbox {
+  border-bottom: none !important;
+}
+
+#titlebar {
+  background: var(--accent-color) !important;
+}
+
+/* Sets the toolbar color */
+toolbar#nav-bar {
+  background: var(--accent-color) !important;
+  box-shadow: none !important;
+}
+
+/* Sets the URL bar color */
+#urlbar {
+  background: none;
+}
+#urlbar-background {
+  padding: 1px !important;
+  background-color: rgb(0, 0, 0);
+  box-shadow: inset 0px 0px 1px 0px #e3e3e3 !important;
+  border-radius: 30px !important;
+  border-color: #1a1a1a !important;
+  border: none !important;
+  margin: -1px 0px;
+}
+#urlbar-input-container {
+  border: none !important;
+}
+#urlbar-input {
+	mask-repeat: no-repeat;
+	unicode-bidi: plaintext;
+	text-align: match-parent;
+  margin: 0px 0px 0px 20px !important; 
+}
+
+hbox#page-action-buttons {
+  padding: 0px 5px !important;
+}
+hbox#star-button-box:hover {
+  background: #676767 !important;
+}
+
+.bookmark-item:active
+{
+  color: rgba(160,160,160,0.9) !important;
+}
+
+/* Pages Navbar */
+.tab-close-button {
+transition: all 0.3s ease !important;
+border-radius: 30px !important;
+}
+.tab-close-button:hover {
+  fill-opacity: 0.7 !important;
+}
+.tabbrowser-tab.tab-stack.tab-background {
+  border-radius: 30px !important;
+  background-color: : aqua !important;
+}
+.tabbrowser-tab.tab-stack.tab-background:hover {
+  background-color: : aqua !important;
+}
+
+.toolbarbutton-badge-stack{
+border-radius: 30px !important;
+}
+
+#tracking-protection-icon-container{
+border-radius: 30px !important;
+}
+
+#identity-icon-box{
+border-radius: 30px !important;
+}
+
+#identity-permission-box{
+border-radius: 30px !important;
+}
+
+#star-button-box{
+border-radius: 30px !important;
+}
+
+#reload-button{
+ border-radius: 30px !important;
+}
+
+#notification-popup-box{
+border-radius: 30px !important;
+}
+
+#back-button:hover{
+border-radius: 30px !important;
+}
+
+#forward-button:hover{
+border-radius: 30px !important;
+}
+
+#PlacesToolbarItems {
+display: flex !important;
+justify-content: center !important;
+}
+
+tab[pending], #alltabs-popup menuitem[pending] {
+  background-color:  rgba(80, 80, 80,0.3)  !important;
+  border-radius: 30px !important;
+}
+
+/* Toolbar icons rounded borders on hover */
+toolbarbutton.bookmark-item:not(.subviewbutton) {
+	border-radius: 30px;
+	max-width: 13em;
+	appearance: none;
+}
+
+/* Make bunch of things in the main UI round */
+:root{ --toolbarbutton-border-radius: 24px !important }
+#urlbar-input-container > box:hover,
+#urlbar-input-container > box[open],
+#main-menubar >  menu,
+.titlebar-button:hover,
+#scrollbutton-up,
+#scrollbutton-down,
+.tab-close-button,
+.close-icon > image,
+#page-action-buttons > :hover,
+.panel-arrowcontent,
+.urlbarView-row-inner,
+.search-one-offs button,
+.subviewbutton-back,
+.toolbaritem-combined-buttons > toolbarbutton,
+#PopupSearchAutoComplete,
+menupopup{ border-radius: 18px }
+
+button,
+.tab-background{ border-radius: 30px !important; }
+
+.panel-arrowcontent{ margin-inline-end: 0 !important; }
+.panel-arrow{ margin-inline: 17px !important; }
+
+menupopup{ -moz-appearance: none !important; overflow: -moz-hidden-unscrollable !important; }
+
+.tabbrowser-tab[selected]::after,
+.tabbrowser-tab[beforeselected-visible]::after{ border-color: transparent !important; }
+
+.urlbar-icon,
+toolbar toolbarbutton:not(#back-button):not(.bookmark-item):not(.titlebar-button) > .toolbarbutton-icon{  border-radius: 0px !important; clip-path: circle() }
+
+menugroup:hover > menuitem{ clip-path: circle() }
+
+.toolbarbutton-1 {
+  --toolbarbutton-hover-background: #676767 !important;
+  --toolbarbutton-active-background: #676767 !important;
+}
+
+/*====== UI Settings ======*/
+
+:root {
+  --navbarWidth: 600px; /* Set width of navbar */
+}
+
+/* If the window is wider than 1000px, use flex layout */
+@media (min-width: 800px) {
+  #navigator-toolbox {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+  }
+
+  /*  Url bar  */
+  #nav-bar {
+      order: 1;
+      width: var(--navbarWidth);
+    }
+
+  /* Tab bar */
+  #titlebar {
+      order: 2;
+      width: calc(100vw - var(--navbarWidth) - 1px);
+  }
+
+  /* Bookmarks bar */
+  #PersonalToolbar {
+      order: 3;
+      width: 100%;
+  }
+  
+  /* Fix urlbar sometimes being misaligned */
+  :root[uidensity="compact"] #urlbar {
+      --urlbar-toolbar-height: 39.60px !important;
+  }
+
+  :root[uidensity="touch"] #urlbar {
+      --urlbar-toolbar-height: 49.00px !important;
+  }
+}
+
+/*====== Simplifying interface ======*/
+
+/* Autohide back button when disabled */
+#back-button, #forward-button {
+    transform: scale(1, 1) !important;
+    transition: margin-left 150ms var(--animation-easing-function), opacity 250ms var(--animation-easing-function), transform 350ms var(--animation-easing-function) !important;
+}
+
+#back-button[disabled="true"], #forward-button[disabled="true"] {
+    margin-left: -34px !important;
+    opacity: 0 !important;
+    transform: scale(0.8, 0.8) !important;
+    pointer-events: none !important;
+}
+
+/* Remove UI elements */
+#identity-box, /* Site information */
+#tracking-protection-icon-container, /* Shield icon */
+#page-action-buttons > :not(#urlbar-zoom-button, #star-button-box), /* All url bar icons except for zoom level and bookmarks */
+#urlbar-go-button, /* Search URL magnifying glass */
+#alltabs-button, /* Menu to display all tabs at the end of tabs bar */
+.titlebar-buttonbox-container /* Minimize, maximize, and close buttons */ {
+    display: none !important;
+}
+
+#nav-bar {
+    box-shadow: none !important;
+}
+
+/* Remove "padding" left and right from tabs */
+.titlebar-spacer {
+    display: none !important;
+}
+
+/* Fix URL bar overlapping elements */
+#urlbar-container {
+    min-width: initial !important;
+}
+
+/* Remove gap after pinned tabs */
+#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
+> #tabbrowser-arrowscrollbox
+> .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 0 !important;
+}
+
+/* Hide the hamburger menu */
+#PanelUI-menu-button { 
+  padding: 0px !important;
+}
+
+#PanelUI-menu-button .toolbarbutton-icon { 
+  width: 1px !important; 
+}
+
+#PanelUI-menu-button .toolbarbutton-badge-stack {
+  padding: 0px !important; 
+}
