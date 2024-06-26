@@ -120,7 +120,7 @@ public class Hour {
 			return this.hours * SECONDS_HOUR + this.minutes * SECONDS_MINUTE + this.seconds;
 		}
 		
-		public int differenceSeconds(Hour anotherHour) {
+		public int secondsDiff(Hour anotherHour) {
 			return toSeconds() - anotherHour.toSeconds();
 		}
 		
