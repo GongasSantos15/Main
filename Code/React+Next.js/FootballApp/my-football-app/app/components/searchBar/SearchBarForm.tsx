@@ -5,47 +5,64 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
+// Função que define o componente `SearchBarForm` que recebe a propriedade teamsData
 export default function SearchBarForm({ teamsData }: { teamsData: Team[] }) {
+  // Use States para gerir o termo de procura, o índice focado e a visibilidade da caixa de resultados filtrada
   const [searchTerm, setSearchTerm] = useState("");
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [showFilteredBox, setShowFilteredBox] = useState(false);
 
+  // Inicializa o router do Next.JS para navegação entre páginas
   let router = useRouter();
 
+  // Função que filtra as equipas com base no termo de procura
   const filteredTeams = teamsData.filter((team) =>
     team.team.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
+  // Função que lida com as mudanças no campo de procura
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
     setFocusedIndex(-1);
     setShowFilteredBox(true);
   };
 
+  // Função que lida com os eventos do teclado no campo de procura
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "ArrowDown") {
       event.preventDefault();
+
+      // Define o comprimento máximo de itens a serem mostrados na lista
       const length = Math.min(filteredTeams.length, 10);
+      // Atualiza o índice focado para navegar para baixo na lista
       setFocusedIndex((prevIndex) =>
         prevIndex < length - 1 ? prevIndex + 1 : prevIndex,
       );
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
+
+      // Atualiza o índice focado para navegar para cima na lista
       setFocusedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : -1));
     } else if (event.key === "Enter" && focusedIndex !== -1) {
       event.preventDefault();
+
+      // Navega para a página da equipa selecionada ao pressionar Enter
       const teamId = filteredTeams[focusedIndex].team.id;
       router.push(`/team/${teamId}`);
       setSearchTerm("");
     }
   };
 
+  // Função para lidar com os cliques da lista de equipas, coloca o termo de busca vazio
   const handleTeamItemClick = () => {
     setSearchTerm("");
   };
 
+  // JSX para renderizar a lista de equipas filtradas
   return (
+    // Container com largura máximo e com os itens centralizados
     <div className="flex justify-center items-center w-full max-w-lg relative">
+      {/* Campo de pesquisa para procurar por equipa */}
       <input
         type="text"
         value={searchTerm}
@@ -55,8 +72,10 @@ export default function SearchBarForm({ teamsData }: { teamsData: Team[] }) {
         className="w-full bg-gray-300 text-black p-2 outline-none border-neutral-100/60 border-[2px] rounded-full
       hover:border-green-700 focus:border-green-700"
       />
+      {/* Caixa de resultados filtrados que aparece quando há um termo de procura e resultados */}
       {searchTerm && filteredTeams.length > 0 && showFilteredBox ? (
         <div className="absolute top-full left-2 w-full max-w-md bg-black/80 z-20 flex flex-col">
+          {/* Mapeia e renderiza os itens da lista de equipas filtradas */}
           {filteredTeams.slice(0, 10).map((standing, i) => (
             <Link
               href={`/team/${standing.team.id}`}
