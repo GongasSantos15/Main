@@ -4,6 +4,7 @@ import { Fixture } from "@/types";
 import moment from "moment";
 import Link from "next/link";
 import Image from "next/image";
+import LocalTime from "@/app/components/LocalTime";
 
 type PageProps = {
   match: Fixture;
@@ -37,13 +38,11 @@ export default function FixtureItem({ match, index }: PageProps) {
 
       {/* Match Info */}
       <div className="w-1/3 flex flex-col justify-center items-center text-center">
-        <p className="text-xs text-gray-300">{matchDate.format("MMM DD")}</p>
-        <p className="text-xs text-gray-300">{matchDate.format("HH:mm")}</p>
-        <p className="text-xs font-bold text-white mt-1">
-          {match.fixture.status.short === "NS"
-            ? "VS"
-            : `${match.goals.home} - ${match.goals.away}`}
-        </p>
+        <div className="h-1/3 text-xs text-center">
+          <LocalTime fixture={match} />
+        </div>
+        <div className="h-1/3 text-center">vs</div>
+        <div className="h-1/3"></div>
       </div>
 
       {/* Away Team */}
