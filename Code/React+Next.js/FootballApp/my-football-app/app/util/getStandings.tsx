@@ -2,8 +2,15 @@
 import "server-only";
 import { Standing } from "@/types";
 import moment from "moment";
+import { USE_SAMPLE } from "../sampleData/useSample";
+import getStandingsSample from "../sampleData/getStandingsSample";
 
 export default async function getStandings(): Promise<Standing[]> {
+  // Previne o uso de chamadas à API se USE_SAMPLE estiver definido como true
+  if (USE_SAMPLE) {
+    return getStandingsSample();
+  }
+
   // Variáveis necessárias (currentTime, month, year)
   const currentTime = moment();
   const month = currentTime.month();
@@ -42,17 +49,6 @@ export default async function getStandings(): Promise<Standing[]> {
     { name: "Bundesliga", id: 78 },
     { name: "Serie A", id: 135 },
     { name: "Ligue 1", id: 61 },
-
-    { name: "Primeira Liga", id: 94 },
-    { name: "Segunda Liga", id: 95 },
-    { name: "Supertaça", id: 550 },
-    { name: "Taça da Liga", id: 97 },
-    { name: "Taça de Portugal", id: 96 },
-
-    { name: "FIFA Club World Cup", id: 15 },
-    { name: "UEFA Champions League", id: 2 },
-    { name: "UEFA Europa League", id: 3 },
-    { name: "UEFA Conference League", id: 848 },
   ];
 
   // Para cada liga, buscar os dados e mostrar os resultados

@@ -3,7 +3,7 @@
 import { Team } from "@/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // Função que define o componente `SearchBarForm` que recebe a propriedade teamsData
 export default function SearchBarForm({ teamsData }: { teamsData: Team[] }) {
@@ -58,6 +58,29 @@ export default function SearchBarForm({ teamsData }: { teamsData: Team[] }) {
     setSearchTerm("");
   };
 
+  // Cria uma referência para o elemento da lista de equipas
+  const teamListRef = useRef<HTMLDivElement>(null);
+
+  // Função para lidar com os cliques fora da lista de equipas
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (
+      teamListRef.current &&
+      !teamListRef.current.contains(event.target as Node)
+    ) {
+      // Esconde a caixa de resultados filtrados se o clique foi fora
+      setShowFilteredBox(false);
+    }
+  };
+
+  // Event listener para detetar cliques fora da lista de equipas
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+    // Remove o event listener quando o componente é desmontado
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+
   // JSX para renderizar a lista de equipas filtradas
   return (
     // Container com largura máximo e com os itens centralizados
@@ -74,7 +97,7 @@ export default function SearchBarForm({ teamsData }: { teamsData: Team[] }) {
       />
       {/* Caixa de resultados filtrados que aparece quando há um termo de procura e resultados */}
       {searchTerm && filteredTeams.length > 0 && showFilteredBox ? (
-        <div className="absolute top-full left-2 w-full max-w-md bg-black/80 z-20 flex flex-col">
+        <div className="absolute top-full w-full max-w-lg bg-black/80 z-20 flex flex-col">
           {/* Mapeia e renderiza os itens da lista de equipas filtradas */}
           {filteredTeams.slice(0, 10).map((standing, i) => (
             <Link
@@ -82,7 +105,9 @@ export default function SearchBarForm({ teamsData }: { teamsData: Team[] }) {
               key={standing.team.id}
               className={`p-2 text-neutral-100 ${i === focusedIndex ? "bg-neutral-100/40" : ""}`}
               onClick={() => handleTeamItemClick()}
-            ></Link>
+            >
+              {standing.team.name}
+            </Link>
           ))}
         </div>
       ) : null}
