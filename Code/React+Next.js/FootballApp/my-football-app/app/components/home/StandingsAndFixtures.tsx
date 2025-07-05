@@ -1,10 +1,12 @@
 "use client";
 
+// Imports
 import { AllFixtures, Standing } from "@/types";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import FixturesByLeague from "./FixturesByLeague";
 
+// Define e exporta um componente que recebe as propriedades standingsData e filteredFixtures
 export default function StandingsAndFixtures({
   standingsData,
   filteredFixtures,
@@ -12,14 +14,21 @@ export default function StandingsAndFixtures({
   standingsData: Standing[];
   filteredFixtures: AllFixtures[];
 }) {
-  const menuItems = ["EPL", "La Liga", "BundesLiga", "Serie A", "Ligue 1"];
+  // Array com todas as ligas disponíveis
+  const menuItems = ["EPL", "La Liga", "Bundesliga", "Serie A", "Ligue 1"];
+
+  // Estados Locais para gerir a aba ativa
   const [activeTab, setActiveTab] = useState(0);
+
+  // Cria uma referência para o elemento do menu
   const menuRef = useRef<HTMLDivElement>(null);
 
+  // Função para aceder a uma aba específica
   const scrollToTab = (index: number) => {
     const container = menuRef.current;
     if (container) {
       const tab = container.children[index] as HTMLElement;
+      // Scroll suave até à aba selecionada
       tab?.scrollIntoView({
         behavior: "smooth",
         block: "nearest",
@@ -28,11 +37,13 @@ export default function StandingsAndFixtures({
     }
   };
 
+  // Função para lidar com os cliques nas abas
   const handleTabClick = (index: number) => {
     setActiveTab(index);
     scrollToTab(index);
   };
 
+  // Event Listener para lidar com eventos de scroll do rato
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {
       if (event.shiftKey) {
@@ -45,6 +56,7 @@ export default function StandingsAndFixtures({
       container.addEventListener("wheel", handleWheel, { passive: false });
     }
 
+    // Remove o Event Listener quando o componente é desmontado
     return () => {
       if (container) {
         container.removeEventListener("wheel", handleWheel);
@@ -53,14 +65,18 @@ export default function StandingsAndFixtures({
   }, []);
 
   return (
+    // Container principal com layout flexível
     <div className="flex flex-col w-full max-w-7xl bg-gradient-to-br from-red-800/75 to-red-800/20 lg:flex-row">
+      {/* Container para a secção das classificações */}
       <div className="flex justify-center items-center lg:w-3/5 md:p-10 py-5">
         <div
           className="flex flex-col justify-center items-center bg-gradient-to-b
                 from-black/40 w-full text-neutral-100 rounded-3xl"
         >
           <div className="w-full flex flex-col justify-center items-center">
-            <div className="p-2 font-bold">STANDING</div>
+            {/* Título da secção de classificações */}
+            <div className="p-2 font-bold">STANDINGS</div>
+            {/* Container para os botões das abas das diferentes ligas */}
             <div className="flex justify-center w-full">
               {menuItems.map((a, i) => (
                 <button
@@ -77,6 +93,7 @@ export default function StandingsAndFixtures({
                 </button>
               ))}
             </div>
+            {/* Container para os dados de classificação roláveis */}
             <div
               ref={menuRef}
               className="w-full flex overflow-x-hidden snap-x scrollbar-none
@@ -92,6 +109,7 @@ export default function StandingsAndFixtures({
                     className="flex flex-col justify-between p-2
                                         w-full"
                   >
+                    {/* Cabeçalho da tabela de classificações */}
                     <div className="flex w-full p-1">
                       <div className="w-1/12"></div>
                       <div className="w-3/12"></div>
@@ -107,6 +125,7 @@ export default function StandingsAndFixtures({
                       </div>
                       <div className="w-2/12 text-center">Form</div>
                     </div>
+                    {/* Mapeia e renderiza os dados das equipas */}
                     {responseData.league.standings[0].map((team, j) => (
                       <Link
                         href={`/team/${team.team.id}`}
@@ -146,6 +165,7 @@ export default function StandingsAndFixtures({
                             {team.goalsDiff}
                           </div>
                         </div>
+                        {/* Renderiza a forma recente da equipa com bolas coloridas: verde 'W', vermelho 'L', cinza 'D' */}
                         <div className="w-2/12 flex justify-center items-center">
                           {team.form?.split("").map((char, i) => (
                             <div
@@ -170,12 +190,30 @@ export default function StandingsAndFixtures({
           </div>
         </div>
       </div>
+      {/* Container para a secção dos próximos jogos */}
       <div className="flex justify-center items-center lg:w-2/5 pt-10 lg:pr-10 pb-10 lg:pl-0">
         <div className="flex flex-col justify-center items-center bg-gradient-to-b from-black/40 w-full text-neutral-100 rounded-3xl h-full">
           <div className="w-full flex flex-col justify-center items-center">
+            {/* Título da secção dos próximos jogos */}
             <div className="p-2 font-bold">Upcoming Matches</div>
+            {/* Container para os próximos jogos */}
             <div className="flex flex-col w-full justify-center items-center pb-5 overflow-hidden">
-              {/* Upcoming Matches */}
+              {/* Componente para renderizar os próximos jogos */}
+              {menuItems.map((leagueName, i) => {
+                return (
+                  activeTab === i &&
+                  filteredFixtures.map((league, j) => {
+                    if (league.name === leagueName) {
+                      return (
+                        <FixturesByLeague
+                          fixturesData={league.fixtures}
+                          key={league.name + j}
+                        />
+                      );
+                    }
+                  })
+                );
+              })}
             </div>
           </div>
         </div>
