@@ -43,4 +43,4 @@ type Games = {
   };
 };
 
-export { Standing };
+export { Standing, Team };

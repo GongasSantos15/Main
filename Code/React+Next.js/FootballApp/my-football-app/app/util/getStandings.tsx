@@ -48,6 +48,11 @@ export default async function getStandings(): Promise<Standing[]> {
     { name: "Supertaça", id: 550 },
     { name: "Taça da Liga", id: 97 },
     { name: "Taça de Portugal", id: 96 },
+
+    { name: "FIFA Club World Cup", id: 15 },
+    { name: "UEFA Champions League", id: 2 },
+    { name: "UEFA Europa League", id: 3 },
+    { name: "UEFA Conference League", id: 848 },
   ];
 
   // Para cada liga, buscar os dados e mostrar os resultados
