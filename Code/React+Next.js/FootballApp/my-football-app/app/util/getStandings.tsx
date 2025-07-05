@@ -65,7 +65,7 @@ export default async function getStandings(): Promise<Standing[]> {
         const standing = data.response[0];
 
         if (standing) {
-          standing.push(standings);
+          standings.push(standing);
         }
       })
       .catch((err) => {
