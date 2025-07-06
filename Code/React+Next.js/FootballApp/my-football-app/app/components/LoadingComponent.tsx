@@ -2,6 +2,7 @@
 
 import { GridLoader } from "react-spinners";
 
+// Componente para quando a página está a carregar
 export default function LoadingComponent({ color }: { color: string }) {
   return (
     <div>

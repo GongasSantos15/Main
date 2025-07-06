@@ -30,6 +30,7 @@ type Team = {
   home: Games;
   away: Games;
   update: string;
+  form: string;
 };
 
 type Games = {

@@ -1,14 +1,17 @@
+// Imports
 import { AllFixtures, Fixture } from "@/types";
 import { USE_SAMPLE } from "../sampleData/useSample";
 import moment from "moment";
 import getFixturesSample from "../sampleData/getFixturesSample";
 
+// Chave da API de futebol (API-Football)
 const API_KEY = process.env.API_KEY as string;
 
+// Ligas que serão utilizadas para as partidas
 const leagues = [
   { league: 39, name: "EPL" },
   { league: 140, name: "La Liga" },
-  { league: 78, name: "BundesLiga" },
+  { league: 78, name: "Bundesliga" },
   { league: 135, name: "Serie A" },
   { league: 61, name: "Ligue 1" },
   { league: 2, name: "Champions League" },
@@ -29,6 +32,7 @@ const leagues = [
   { league: 526, name: "Trophee des Champions" },
 ];
 
+// Função que retorna os jogos de uma liga
 async function fetchFixturesByLeague(
   year: number,
   league: number,
@@ -41,15 +45,18 @@ async function fetchFixturesByLeague(
       "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
     },
     next: {
-      // revalidate data every 24 hours
+      // Atualizar dados a cada 24 horas
       revalidate: 60 * 60 * 24,
     },
   };
 
+  // Faz a requisição para a API
   try {
     const response = await fetch(url, options);
     const data = await response.json();
     const fixtures: Fixture[] = data.response;
+
+    // Retorna um array vazio se não existirem partidas
     if (fixtures === null || fixtures === undefined) {
       return [];
     } else {
@@ -61,29 +68,37 @@ async function fetchFixturesByLeague(
   }
 }
 
+// Função principal que vai retornar todas as partidas de todas as ligas
 export default async function getFixtures(): Promise<AllFixtures[]> {
+  // Se USE_SAMPLE retornar true, retorna os dados de amostra
   if (USE_SAMPLE) {
     return getFixturesSample();
   }
 
   try {
+    // Obtém a data atual
     const currentTime = moment();
     const year = currentTime.year();
     const month = currentTime.month();
 
+    // Array para armazenar todas as partidas de todas as ligas
     const allFixturesByLeague: AllFixtures[] = [];
 
+    // Itera sobre cada liga para obter as partidas
     for (const league of leagues) {
+      // Se o mês atual for anterior ou igual a junho, obter partidas do ano anterior (calendário futebol: agosto a maio)
       if (month <= 5) {
         allFixturesByLeague.push({
           name: league.name,
           fixtures: await fetchFixturesByLeague(year - 1, league.league),
         });
+        // Se o mês atual for agosto ou posterior, obter partidas do ano atual
       } else if (month >= 8) {
         allFixturesByLeague.push({
           name: league.name,
           fixtures: await fetchFixturesByLeague(year, league.league),
         });
+        // Caso contrário, Obter partidas de ambos os anos (ano anterior e atual)
       } else {
         allFixturesByLeague.push({
           name: league.name,
@@ -105,6 +120,7 @@ export default async function getFixtures(): Promise<AllFixtures[]> {
       }
     }
 
+    // Retorna todas as partidas das ligas
     return allFixturesByLeague;
   } catch (error) {
     console.error("An error occured while fetching fixtures: ", error);

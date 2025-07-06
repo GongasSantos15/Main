@@ -1,13 +1,16 @@
 "use client";
 
+// Imports
 import { Fixture } from "@/types";
 import { useEffect, useState } from "react";
 import moment from "moment";
 
+// Tipo dos parâmetros
 type PageProps = {
   fixture: Fixture;
 };
 
+// Função que formata o horário para o fuso horário local
 export default function LocalTime({ fixture }: PageProps) {
   const [formattedTime, setFormattedTime] = useState("");
 

@@ -1,3 +1,4 @@
+// Imports
 import { AllFixtures } from "@/types";
 import getFixtures from "./getFixtures";
 import moment from "moment";
@@ -8,6 +9,7 @@ export default async function getFixturesForFiveLeagues(): Promise<
   try {
     const allFixturesByLeague = await getFixtures();
 
+    // Array para armazenar as partidas pelas 5 ligas
     const fixturesForFiveLeagues: AllFixtures[] = [];
     for (const league of allFixturesByLeague) {
       if (

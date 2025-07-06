@@ -69,5 +69,6 @@ export default async function getStandings(): Promise<Standing[]> {
       });
   }
 
+  // Retornar a classificação das ligas
   return standings;
 }

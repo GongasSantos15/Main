@@ -1,5 +1,6 @@
 import { AllFixtures } from "@/types";
 
+// Página que contém os dados de amostra
 export default function getFixturesSample(): AllFixtures[] {
   let fixturesSample = `[
         {

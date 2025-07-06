@@ -1,7 +1,7 @@
 "use client";
 
 // Imports
-import { AllFixtures, Standing } from "@/types";
+import { AllFixtures, Standing, Team } from "@/types";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import FixturesByLeague from "./FixturesByLeague";
@@ -14,7 +14,7 @@ export default function StandingsAndFixtures({
   standingsData: Standing[];
   filteredFixtures: AllFixtures[];
 }) {
-  // Array com todas as ligas disponíveis
+  // Array com todas as ligas
   const menuItems = ["EPL", "La Liga", "Bundesliga", "Serie A", "Ligue 1"];
 
   // Estados Locais para gerir a aba ativa
@@ -125,51 +125,54 @@ export default function StandingsAndFixtures({
                       </div>
                       <div className="w-2/12 text-center">Form</div>
                     </div>
-                    {/* Mapeia e renderiza os dados das equipas */}
-                    {responseData.league.standings[0].map((team, j) => (
-                      <Link
-                        href={`/team/${team.team.id}`}
-                        key={j + team.team.name}
-                        className={`flex w-full p-1 hover:bg-red-800/50 ${j % 2 === 0 ? "bg-black/40" : ""}`}
-                      >
-                        <div className="w-1/12 flex px-2 justify-center items-center">
-                          {j + 1}
-                        </div>
-                        <div className="w-3/12 flex text-xs items-center">
-                          {team.team.name}
-                        </div>
-                        <div className="w-6/12 flex justify-center items-center">
-                          <div className="w-full text-center">
-                            {team.all.played}
+                    {/* Mapeia e renderiza os dados das equipas, a classificação geral da liga */}
+                    {responseData.league.standings[0].map(
+                      (team: Team, j: number) => (
+                        <Link
+                          href={`/team/${team.team.id}`}
+                          key={j + team.team.name}
+                          className={`flex w-full p-1 hover:bg-red-800/50 ${j % 2 === 0 ? "bg-black/40" : ""}`}
+                        >
+                          <div className="w-1/12 flex px-2 justify-center items-center">
+                            {j + 1}
                           </div>
-                          <div className="w-full text-center">
-                            {team.all.win}
+                          <div className="w-3/12 flex text-xs items-center">
+                            {team.team.name}
                           </div>
-                          <div className="w-full text-center">
-                            {team.all.draw}
+                          <div className="w-6/12 flex justify-center items-center">
+                            <div className="w-full text-center">
+                              {team.all.played}
+                            </div>
+                            <div className="w-full text-center">
+                              {team.all.win}
+                            </div>
+                            <div className="w-full text-center">
+                              {team.all.draw}
+                            </div>
+                            <div className="w-full text-center">
+                              {team.all.lose}
+                            </div>
+                            <div className="w-full text-center font-bold">
+                              {team.points}
+                            </div>
+                            <div className="w-full text-center">
+                              {team.all.goals.for}
+                            </div>
+                            <div className="w-full text-center">
+                              {team.all.goals.against}
+                            </div>
+                            <div className="w-full text-center">
+                              {team.goalsDiff}
+                            </div>
                           </div>
-                          <div className="w-full text-center">
-                            {team.all.lose}
-                          </div>
-                          <div className="w-full text-center font-bold">
-                            {team.points}
-                          </div>
-                          <div className="w-full text-center">
-                            {team.all.goals.for}
-                          </div>
-                          <div className="w-full text-center">
-                            {team.all.goals.against}
-                          </div>
-                          <div className="w-full text-center">
-                            {team.goalsDiff}
-                          </div>
-                        </div>
-                        {/* Renderiza a forma recente da equipa com bolas coloridas: verde 'W', vermelho 'L', cinza 'D' */}
-                        <div className="w-2/12 flex justify-center items-center">
-                          {team.form?.split("").map((char, i) => (
-                            <div
-                              key={char + i}
-                              className={`opacity-80 w-3 h-3 m-[1px] rounded-full
+                          {/* Renderiza a forma recente da equipa com bolas coloridas: verde 'W', vermelho 'L', cinza 'D' */}
+                          <div className="w-2/12 flex justify-center items-center">
+                            {team.form
+                              ?.split("")
+                              .map((char: string, i: number) => (
+                                <div
+                                  key={char + i}
+                                  className={`opacity-80 w-3 h-3 m-[1px] rounded-full
                               ${
                                 char === "L"
                                   ? "bg-red-500"
@@ -177,11 +180,12 @@ export default function StandingsAndFixtures({
                                     ? "bg-gray-500"
                                     : "bg-green-500"
                               }`}
-                            ></div>
-                          ))}
-                        </div>
-                      </Link>
-                    ))}
+                                />
+                              ))}
+                          </div>
+                        </Link>
+                      ),
+                    )}
                   </div>
                 </div>
               ))}

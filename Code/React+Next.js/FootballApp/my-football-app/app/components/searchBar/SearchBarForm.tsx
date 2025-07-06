@@ -98,7 +98,7 @@ export default function SearchBarForm({ teamsData }: { teamsData: Team[] }) {
       {/* Caixa de resultados filtrados que aparece quando há um termo de procura e resultados */}
       {searchTerm && filteredTeams.length > 0 && showFilteredBox ? (
         <div className="absolute top-full w-full max-w-lg bg-black/80 z-20 flex flex-col">
-          {/* Mapeia e renderiza os itens da lista de equipas filtradas */}
+          {/* Mapeia e renderiza os nomes das equipas filtradas, consoante o que o utilizador procurar */}
           {filteredTeams.slice(0, 10).map((standing, i) => (
             <Link
               href={`/team/${standing.team.id}`}

@@ -28,6 +28,7 @@ export default async function getTeams(): Promise<Team[]> {
       }
     }
 
+    // Retornar as equipas
     return teams;
   } catch (error) {
     console.error("Error occured while fetching teams: ", error);

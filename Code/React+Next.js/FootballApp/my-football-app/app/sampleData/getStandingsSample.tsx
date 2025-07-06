@@ -1,4 +1,4 @@
-// Ficheiro com os dados de exemplo para as classificações das ligas
+// Ficheiro com os dados de amostra para as classificações das ligas
 
 import { Standing } from "@/types";
 

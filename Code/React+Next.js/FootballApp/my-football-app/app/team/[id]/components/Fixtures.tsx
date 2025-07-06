@@ -1,5 +1,6 @@
 "use client";
 
+// Imports
 import LocalTime from "@/app/components/LocalTime";
 import { Fixture } from "@/types";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/solid";
@@ -10,34 +11,47 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+// Tipos de parâmetros
 type PageProps = {
   fixturesByTeamId: Fixture[];
   teamId: number;
 };
 
+// Componente para exibir as partidas de uma equipa
 export default function Fixtures({ fixturesByTeamId, teamId }: PageProps) {
+  // Estados para controlar o índice atual, a página, quantas partidas por página e a data atual formatada
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-
+  const itemsPerPage = 3;
   const today = moment().format("YYYY-MM-DD");
+
+  // Filtra as partidas que já ocorreram
   const fixturesDone = fixturesByTeamId.filter((fixture) => {
     const fixtureDate = moment(fixture.fixture.date).format("YYYY-MM-DD");
     return fixtureDate < today;
   });
+
+  // Filtra as partidas que ocorrem hoje
   const fixturesToday = fixturesByTeamId.filter((fixture) => {
     const fixtureDate = moment(fixture.fixture.date).format("YYYY-MM-DD");
     return fixtureDate === today;
   });
+
+  // Filtra as próximas partidas
   const fixturesFuture = fixturesByTeamId.filter((fixture) => {
     const fixtureDate = moment(fixture.fixture.date).format("YYYY-MM-DD");
     return fixtureDate > today;
   });
 
-  const firstItemsFixturesFuture = fixturesFuture.slice(0, 5);
+  // Apresenta as primeiras 40 partidas futuras
+  const firstItemsFixturesFuture = fixturesFuture.slice(0, 40);
+
+  // Função para navegar para a partida anterior
   const prevItem = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? 0 : prevIndex - 1));
   };
+
+  // Função para navegar para a próxima partida
   const nextItem = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === firstItemsFixturesFuture.length - 1
@@ -45,24 +59,29 @@ export default function Fixtures({ fixturesByTeamId, teamId }: PageProps) {
         : prevIndex + 1,
     );
   };
+
+  // Função para calcular a posição para a animação de transição entre partidas
   const getTranslateX = (index: number) => {
     return `-${index * 100}%`;
   };
 
+  // Inverte a ordem das partidas concluídas
   const reversedFixturesDoneData = [...fixturesDone].reverse();
 
-  // Paginação
+  // Lógica de paginação, no fim das partidas concluídas
   const totalPages = Math.ceil(reversedFixturesDoneData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentFixtures = reversedFixturesDoneData.slice(startIndex, endIndex);
 
+  // Função para mudar de página
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
 
+  // Função para renderizar os botões de paginação
   const renderPaginationButtons = () => {
     const buttons = [];
     const maxVisiblePages = 5;
@@ -170,6 +189,7 @@ export default function Fixtures({ fixturesByTeamId, teamId }: PageProps) {
 
   return (
     <div className="flex flex-col w-full justify-center items-center text-neutral-100">
+      {/* Container das partidas futuras */}
       <div className="flex flex-col w-full justify-center items-center">
         <div
           className="flex w-full justify-center items-center p-2 bg-gradient-to-r
@@ -182,6 +202,7 @@ export default function Fixtures({ fixturesByTeamId, teamId }: PageProps) {
             className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 z-10"
             onClick={prevItem}
           >
+            {/* Ícone de seta para a esquerda que ao clicar permite exibir a partida anterior */}
             <ChevronDoubleLeftIcon
               className={`h-10 w-10 ${currentIndex === 0 ? "text-gray-600" : "text-neutral-100"}`}
             />
@@ -197,6 +218,7 @@ export default function Fixtures({ fixturesByTeamId, teamId }: PageProps) {
                 className="w-full flex-shrink-0 flex text-neutral-100 items-center h-36
                                     bg-gradient-to-r from-black/90 to-black/40 hover:bg-red-800"
               >
+                {/* Informações da partida */}
                 <div className="flex flex-col justify-center items-center w-3/12 text-sm text-center">
                   <div className="w-20 h-17 flex items-center justify-center">
                     <Image
@@ -273,12 +295,14 @@ export default function Fixtures({ fixturesByTeamId, teamId }: PageProps) {
             className="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 z-10"
             onClick={nextItem}
           >
+            {/* Ícone de seta para a direita que ao clicar permite exibir a próxima partida */}
             <ChevronDoubleRightIcon
               className={`h-10 w-10 ${currentIndex === firstItemsFixturesFuture.length - 1 ? "text-gray-600" : "text-neutral-100"}`}
             />
           </button>
         </div>
       </div>
+      {/* Container do resultado das partidas */}
       <div className="flex flex-col w-full justify-center items-center">
         <div
           className="flex w-full justify-center items-center p-2 bg-gradient-to-r
@@ -314,6 +338,7 @@ export default function Fixtures({ fixturesByTeamId, teamId }: PageProps) {
               className="w-full flex text-neutral-100 items-center h-36
                                     bg-gradient-to-r from-black/90 to-black/40 hover:bg-red-800"
             >
+              {/* Container para as informações da partida */}
               <div className="flex flex-col justify-center items-center w-3/12 text-sm text-center">
                 <div className="w-20 h-17 flex items-center justify-center">
                   <Image
@@ -403,7 +428,7 @@ export default function Fixtures({ fixturesByTeamId, teamId }: PageProps) {
           </div>
         ))}
 
-        {/* Controles de paginação */}
+        {/* Controlos da paginação */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center p-6 bg-gradient-to-r from-gray-900/30 to-gray-800/30 w-full">
             <div className="flex items-center">{renderPaginationButtons()}</div>
