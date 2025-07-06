@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
       "media-1.api-sports.io",
       "media-2.api-sports.io",
       "media-3.api-sports.io",
+      "media.api-sports.io",
     ],
   },
 };

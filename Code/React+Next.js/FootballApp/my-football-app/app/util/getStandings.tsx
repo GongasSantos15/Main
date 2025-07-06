@@ -17,7 +17,7 @@ export default async function getStandings(): Promise<Standing[]> {
   let year;
 
   // Verificar se o mês é antes de junho, por que senão o ano desportivo é o anterior, já que o ano desportivo é de setembro a junho
-  if (month < 6) {
+  if (month <= 6) {
     year = currentTime.year() - 1;
   } else {
     year = currentTime.year();

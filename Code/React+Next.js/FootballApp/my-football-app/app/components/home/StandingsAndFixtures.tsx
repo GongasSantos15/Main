@@ -130,8 +130,7 @@ export default function StandingsAndFixtures({
                       <Link
                         href={`/team/${team.team.id}`}
                         key={j + team.team.name}
-                        className={`flex w-full p-1 hover:bg-red-800/50
-                                                        ${j % 2 === 0 ? "bg-black/40" : ""}`}
+                        className={`flex w-full p-1 hover:bg-red-800/50 ${j % 2 === 0 ? "bg-black/40" : ""}`}
                       >
                         <div className="w-1/12 flex px-2 justify-center items-center">
                           {j + 1}
