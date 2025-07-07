@@ -37,7 +37,7 @@ export default function RootLayout({
               className="h-screen w-full object-cover" // Estilos CSS para cobrir toda o ecrã
             />
           </div>
-          <div className="absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black/10 to-black" />
+          <div className="absolute top-0 left-0 w-full h-screen bg-black opacity-50" />
           <div className="relative">
             {/* Barra de Pesquisa */}
             <SearchBar />

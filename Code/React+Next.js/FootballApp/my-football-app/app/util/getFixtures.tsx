@@ -30,6 +30,7 @@ const leagues = [
   { league: 65, name: "Coupe de la Ligue" },
   { league: 66, name: "Coupe de France" },
   { league: 526, name: "Trophee des Champions" },
+  { league: 94, name: "Primeira Liga" },
 ];
 
 // Função que retorna os jogos de uma liga

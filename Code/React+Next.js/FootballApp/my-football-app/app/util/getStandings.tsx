@@ -16,7 +16,7 @@ export default async function getStandings(): Promise<Standing[]> {
   const month = currentTime.month();
   let year;
 
-  // Verificar se o mês é antes de junho, por que senão o ano desportivo é o anterior, já que o ano desportivo é de setembro a junho
+  // Verificar se o mês é antes ou igual a junho, por que senão o ano desportivo é o anterior, já que o ano desportivo é de setembro a junho
   if (month <= 6) {
     year = currentTime.year() - 1;
   } else {
@@ -44,11 +44,12 @@ export default async function getStandings(): Promise<Standing[]> {
 
   // Variável das ligas a usar
   const leagues = [
-    { name: "EPL", id: 39 },
+    { name: "Premier League", id: 39 },
     { name: "La Liga", id: 140 },
     { name: "Bundesliga", id: 78 },
     { name: "Serie A", id: 135 },
     { name: "Ligue 1", id: 61 },
+    { name: "Primeira Liga", id: 94 },
   ];
 
   // Para cada liga, buscar os dados e mostrar os resultados
