@@ -7,12 +7,29 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 // Define e exporta um componente que recebe as propriedades standingsData e filteredFixtures
-export default function StandingsAndFixtures({
+export default function Standings({
   standingsData,
 }: {
   standingsData: Standing[];
 }) {
-  const leagueTabs = standingsData.map((data) => ({
+  // Nomes das ligas da UEFA que queremos exibir
+  const leagueNames = [
+    "Premier League",
+    "La Liga",
+    "Bundesliga",
+    "Ligue 1",
+    "Serie A",
+    "Primeira Liga",
+  ];
+
+  // Filtra os dados de classificação para incluir apenas as ligas desejadas
+  // Agora standingsData tem a garantia de ser uma array, mesmo que vazia.
+  const filteredStandings = standingsData.filter((data) =>
+    leagueNames.includes(data.league.name),
+  );
+
+  // Cria o array de abas apenas com as ligas filtradas
+  const leagueTabs = filteredStandings.map((data) => ({
     name: data.league.name,
     logo: data.league.logo,
     id: data.league.id,
@@ -116,7 +133,7 @@ export default function StandingsAndFixtures({
               ref={menuRef}
               className="w-full flex overflow-x-hidden snap-x scrollbar-none scroll-smooth text-xs md:text-sm"
             >
-              {standingsData.map((responseData, i) => (
+              {filteredStandings.map((responseData, i) => (
                 <div
                   key={responseData.league.id}
                   className="flex-shrink-0 w-full snap-center flex justify-center items-center"

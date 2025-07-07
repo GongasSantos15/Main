@@ -50,6 +50,9 @@ export default async function getStandings(): Promise<Standing[]> {
     { name: "Serie A", id: 135 },
     { name: "Ligue 1", id: 61 },
     { name: "Primeira Liga", id: 94 },
+    { name: "Champions League", id: 2 },
+    { name: "Europa League", id: 3 },
+    { name: "Conference League", id: 848 },
   ];
 
   // Para cada liga, buscar os dados e mostrar os resultados
