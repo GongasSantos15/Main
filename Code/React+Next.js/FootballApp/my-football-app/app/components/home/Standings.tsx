@@ -65,6 +65,12 @@ export default function StandingsAndFixtures({
     };
   }, []);
 
+  // useEffect para rolar para a aba ativa quando activeTab muda
+  // Isso garante que, mesmo que o estado inicial seja 0, a rolagem aconteça se necessário
+  useEffect(() => {
+    scrollToTab(activeTab);
+  }, [activeTab]);
+
   return (
     // Container principal com layout flexível
     <div className="flex flex-col w-full max-w-7xl">
