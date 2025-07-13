@@ -41,17 +41,17 @@ export default function Standings({
   // Cria uma referência para o elemento do menu
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Função para aceder a uma aba específica
+  // Função para aceder a uma aba específica, sem scroll vertical
   const scrollToTab = (index: number) => {
     const container = menuRef.current;
     if (container) {
       const tab = container.children[index] as HTMLElement;
-      // Scroll suave até à aba selecionada
-      tab?.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center",
-      });
+      if (tab) {
+        container.scrollTo({
+          left: tab.offsetLeft,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
