@@ -1,17 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// Lakes Object
+const lakeList = [
+  { id: 1, name: "Echo", trailhead: "Echo" },
+  { id: 2, name: "Maud", trailhead: "Wrights" },
+  { id: 3, name: "Velma", trailhead: "Bayview" },
+];
+
+// App Function
+function App({ lakes }) {
+  return (
+    <div>
+      {lakes.map(lake => (
+        <div>
+          <h2>{lake.name}</h2>
+          <p>Accessed by: {lake.trailhead}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <App lakes={lakeList} />
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
