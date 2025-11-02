@@ -9,8 +9,19 @@ const root = createRoot(container);
 // root.render(React.createElement("h1", { style: {color: "blue" } }, "Hello!"));
 
 // It is also possible to create a children element inside a parent one
-root.render(React.createElement(
+/* root.render(React.createElement(
 	"div", 
 	{ style: { color: "blue" } },
 	React.createElement("h1", null, "hi!")
 ));
+*/
+
+// Using JSX
+root.render(
+  <ul>
+    <li>Hot Dogs</li>
+    <li>Hamburgers</li>
+    <li>Pizza</li>
+    <li>Sushi</li>
+  </ul>
+);
