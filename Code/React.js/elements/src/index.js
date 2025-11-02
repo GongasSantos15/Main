@@ -37,17 +37,3 @@ root.render(
     {city.name} is in {city.country}
   </h1>
 )
-
-// React Component
-function Hello() {
-  return (
-    <div>
-      <h1>Welcome to React!</h1>
-      <p>Let's build something cool.</p>
-    </div>
-  );
-}
-
-root.render(
-  <Hello />
-)
