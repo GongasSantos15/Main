@@ -9,17 +9,32 @@ const lakeList = [
   { id: 3, name: "Velma", trailhead: "Bayview" },
 ];
 
+// List of Numbers
+const items = [1, 2, 3, 4, 5];
+
 // App Function
 function App({ lakes }) {
   return (
-    <div>
-      {lakes.map(lake => (
-        <div>
-          <h2>{lake.name}</h2>
-          <p>Accessed by: {lake.trailhead}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      {/* Lakes List */}
+      <div>
+        {lakes.map(lake => (
+          <div key={lake.id}>
+            <h2>{lake.name}</h2>
+            <p>Accessed by: {lake.trailhead}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Items List */}
+      <div>
+        <ul>
+          {items.map(item => (
+            <li key={item.toString()}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </>
   )
 }
 
