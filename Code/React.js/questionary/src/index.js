@@ -1,17 +1,44 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+function App() {
+
+  // State
+  const [val, setVal] = useState("");
+  const [val2, setVal2] = useState("");
+
+  // Test the values
+  useEffect(() => {
+    console.log(`field 1: ${val}`);
+  }, [val])
+
+  useEffect(() => {
+    console.log(`field 2: ${val2}`);
+  }, [val2])
+
+  return (
+    <>
+      <label>Favorite Phrase:
+        <input 
+          value={val}
+          onChange={e => setVal(e.target.value)}
+        />
+      </label>
+      <br />
+      <label>
+        Second Favorite Phrase:
+        <input 
+          value={val2}
+          onChange={e => setVal2(e.target.value)} 
+        />
+      </label>
+    </>
+  )
+  
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <App />
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
