@@ -1,17 +1,25 @@
-import React from 'react';
+import { React, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// App Function
+function App() {
+  // Create state
+  const [status, setStatus] = useState("Open");
+
+  return (
+    <div>
+      <h1>Status: {status}</h1>
+      <button onClick={() => setStatus("Open")}>Open</button>
+      <button onClick={() => setStatus("Back in 5")}>Break</button>
+      <button onClick={() => setStatus("Closed")}>Close</button>
+    </div>
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <App />
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
